@@ -6,12 +6,13 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
+            color: #333; /* Improved contrast for text */
         }
         .header {
             text-align: center;
             padding: 10px;
-            background-color: #022403;
-            color: #fafafa; /* Adjusted color for contrast */
+            background-color: #052106;
+            color: white;
         }
         .product-grid {
             display: flex;
@@ -53,8 +54,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>RaniVari Meat</h1>
-        <h2>We sell fresh meat</h2>
+        <h1>RaniVari Meat</h1> <!-- Improved contrast for the heading -->
+        <p>We sell fresh meat</p> <!-- Improved contrast for the paragraph -->
     </div>
 
     <div class="product-grid">
@@ -69,25 +70,27 @@
 
     <div class="checkout">
         <h2>Payment Details</h2>
-        <label for="address">Address</label> <!-- Added label -->
+        <label for="quantity-Basa-Fish">Quantity:</label> <!-- Added label for quantity input -->
+        <input type="number" min="1" class="quantity" id="quantity-Basa-Fish">
         <input type="text" id="address" placeholder="Address">
-        <label for="phone">Phone number</label> <!-- Added label -->
+        <label for="phone">Phone number:</label>
         <input type="text" id="phone" placeholder="Phone number">
         <button id="place-order-button">Place Order</button>
     </div>
 
     <script>
         var products = [
-            { name: 'Basa Fish', price: 10, image: 'basa_fish.jpg', alt: 'Image of Basa Fish' },
-            { name: 'Rupchand Fish', price: 15, image: 'rupchand_fish.jpg', alt: 'Image of Rupchand Fish' },
-            { name: 'Brown Crab', price: 12, image: 'brown_crab.jpg', alt: 'Image of Brown Crab' },
-            { name: 'Prawns', price: 20, image: 'prawns.jpg', alt: 'Image of Prawns' },
-            { name: 'Roasters', price: 8, image: 'roasters.jpg', alt: 'Image of Roasters' },
-            { name: 'Broilers', price: 7, image: 'broilers.jpg', alt: 'Image of Broilers' },
-            { name: 'Mutton Body', price: 18, image: 'mutton_body.jpg', alt: 'Image of Mutton Body' },
-            { name: 'Mutton Head', price: 22, image: 'mutton_head.jpg', alt: 'Image of Mutton Head' },
-            { name: 'Pork', price: 12, image: 'pork.jpg', alt: 'Image of Pork' },
-            { name: 'Beef', price: 15, image: 'beef.jpg', alt: 'Image of Beef' }
+            { name: 'Basa Fish', price: 10, image: 'basa_fish.jpg' },
+            { name: 'Rupchand Fish', price: 15, image: 'rupchand_fish.jpg' },
+            { name: 'Brown Crab', price: 12, image: 'brown_crab.jpg' },
+            { name: 'Prawns', price: 20, image: 'prawns.jpg' },
+            { name: 'Roasters', price: 8, image: 'roasters.jpg' },
+            { name: 'Broilers', price: 7, image: 'broilers.jpg' },
+            { name: 'Mutton Body', price: 18, image: 'mutton_body.jpg' },
+            { name: 'Mutton Head', price: 22, image: 'mutton_head.jpg' },
+            { name: 'Pork', price: 12, image: 'pork.jpg' },
+            { name: 'Beef', price: 15, image: 'beef.jpg' },
+            // Add more products as needed
         ];
 
         var cart = { weight: 0, price: 0 };
@@ -107,7 +110,7 @@
 
             var productImage = document.createElement('img');
             productImage.src = product.image;
-            productImage.alt = product.alt; // Added alt attribute
+            productImage.alt = product.name;
 
             var productName = document.createElement('h2');
             productName.textContent = product.name;
@@ -115,16 +118,14 @@
             var productPrice = document.createElement('p');
             productPrice.textContent = '$' + product.price + ' per kg';
 
-            var quantityLabel = document.createElement('label'); // Added label
-            quantityLabel.textContent = 'Quantity';
-            quantityLabel.for = 'quantity-' + product.name.replace(' ', '-');
-
             var quantityInput = document.createElement('input');
             quantityInput.type = 'number';
             quantityInput.min = 1;
             quantityInput.value = 1;
             quantityInput.className = 'quantity';
-            quantityInput.id = 'quantity-' + product.name.replace(' ', '-'); // Added id
+
+            var quantityLabel = document.createElement('label');
+            quantityLabel.textContent = 'Quantity:';
 
             var addButton = document.createElement('button');
             addButton.textContent = 'Add to cart';
@@ -145,7 +146,7 @@
             productCard.appendChild(productImage);
             productCard.appendChild(productName);
             productCard.appendChild(productPrice);
-            productCard.appendChild(quantityLabel); // Added label
+            productCard.appendChild(quantityLabel); <!-- Added quantity label -->
             productCard.appendChild(quantityInput);
             productCard.appendChild(addButton);
 
