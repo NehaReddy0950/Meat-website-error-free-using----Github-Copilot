@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RaniVari Meat</title>
     <style>
         body {
@@ -11,7 +13,7 @@
         .header {
             text-align: center;
             padding: 10px;
-            background-color: #052106;
+            background-color: #0e230e;
             color: white;
         }
         .product-grid {
@@ -31,6 +33,15 @@
         }
         .product-card img {
             width: 100%;
+        }
+        .quantity-label {
+            display: inline-block;
+            width: 60px; /* Adjust width as needed */
+            text-align: right;
+            margin-right: 10px;
+        }
+        .quantity-input {
+            width: 50px; /* Adjust width as needed */
         }
         .cart {
             margin: 20px;
@@ -59,7 +70,6 @@
     </div>
 
     <div class="product-grid">
-        <!-- Product cards will be added here by JavaScript -->
     </div>
 
     <div class="cart">
@@ -70,8 +80,6 @@
 
     <div class="checkout">
         <h2>Payment Details</h2>
-        <label for="quantity-Basa-Fish">Quantity:</label> <!-- Added label for quantity input -->
-        <input type="number" min="1" class="quantity" id="quantity-Basa-Fish">
         <input type="text" id="address" placeholder="Address">
         <label for="phone">Phone number:</label>
         <input type="text" id="phone" placeholder="Phone number">
@@ -110,7 +118,7 @@
 
             var productImage = document.createElement('img');
             productImage.src = product.image;
-            productImage.alt = product.name;
+            productImage.alt = product.name; // Added alt attribute with product name
 
             var productName = document.createElement('h2');
             productName.textContent = product.name;
@@ -122,10 +130,11 @@
             quantityInput.type = 'number';
             quantityInput.min = 1;
             quantityInput.value = 1;
-            quantityInput.className = 'quantity';
+            quantityInput.className = 'quantity-input';
 
             var quantityLabel = document.createElement('label');
             quantityLabel.textContent = 'Quantity:';
+            quantityLabel.className = 'quantity-label';
 
             var addButton = document.createElement('button');
             addButton.textContent = 'Add to cart';
@@ -134,8 +143,8 @@
                 cart.weight += parseInt(quantity);
                 cart.price += product.price * quantity;
 
-                if (cart.weight > 2) {
-                    discount = cart.price * 0.2; // Apply 20% discount
+                if (quantity > 2) {
+                    discount += product.price * 0.2 * (quantity - 2); // Apply 20% discount per unit of product exceeding 2kg
                 }
 
                 var payablePrice = cart.price - discount;
@@ -146,7 +155,7 @@
             productCard.appendChild(productImage);
             productCard.appendChild(productName);
             productCard.appendChild(productPrice);
-            productCard.appendChild(quantityLabel); <!-- Added quantity label -->
+            productCard.appendChild(quantityLabel);
             productCard.appendChild(quantityInput);
             productCard.appendChild(addButton);
 
