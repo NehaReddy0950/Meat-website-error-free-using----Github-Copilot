@@ -13,20 +13,20 @@
         .header {
             text-align: center;
             padding: 10px;
-            background-color: #0e230e;
+            background-color: #0a2f0b;
             color: white;
         }
         .product-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-around;
             margin-top: 20px;
         }
         .product-card {
             border: 1px solid #ddd;
             margin: 10px;
             padding: 10px;
-            width: 200px;
+            width: 30%; /* Adjust width as needed */
             text-align: center;
             background-color: #f9f9f9;
             border-color: #888;
@@ -70,6 +70,92 @@
     </div>
 
     <div class="product-grid">
+        <!-- Product Cards -->
+        <div class="product-card">
+            <img src="basa_fish.jpg" alt="Basa Fish - Fresh Basa fish">
+            <h2>Basa Fish</h2>
+            <p>$10 per kg</p>
+            <label for="quantity-Basa-Fish" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Basa-Fish">
+            <button>Add to cart</button>
+        </div>
+        <div class="product-card">
+            <img src="rupchand_fish.jpg" alt="Rupchand Fish - Fresh Rupchand fish">
+            <h2>Rupchand Fish</h2>
+            <p>$15 per kg</p>
+            <label for="quantity-Rupchand-Fish" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Rupchand-Fish">
+            <button>Add to cart</button>
+        </div>
+        <div class="product-card">
+            <img src="brown_crab.jpg" alt="Brown Crab - Fresh Brown Crab">
+            <h2>Brown Crab</h2>
+            <p>$12 per kg</p>
+            <label for="quantity-Brown-Crab" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Brown-Crab">
+            <button>Add to cart</button>
+        </div>
+        <!-- Add remaining product cards with appropriate alternative text -->
+        <!-- Second Row -->
+        <div class="product-card">
+            <img src="prawns.jpg" alt="Prawns - Fresh Prawns">
+            <h2>Prawns</h2>
+            <p>$20 per kg</p>
+            <label for="quantity-Prawns" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Prawns">
+            <button>Add to cart</button>
+        </div>
+        <div class="product-card">
+            <img src="roasters.jpg" alt="Roasters - Fresh Roasters">
+            <h2>Roasters</h2>
+            <p>$8 per kg</p>
+            <label for="quantity-Roasters" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Roasters">
+            <button>Add to cart</button>
+        </div>
+        <div class="product-card">
+            <img src="broilers.jpg" alt="Broilers - Fresh Broilers">
+            <h2>Broilers</h2>
+            <p>$7 per kg</p>
+            <label for="quantity-Broilers" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Broilers">
+            <button>Add to cart</button>
+        </div>
+        <!-- Third Row -->
+        <div class="product-card">
+            <img src="mutton_body.jpg" alt="Mutton Body - Fresh Mutton Body">
+            <h2>Mutton Body</h2>
+            <p>$18 per kg</p>
+            <label for="quantity-Mutton-Body" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Mutton-Body">
+            <button>Add to cart</button>
+        </div>
+        <div class="product-card">
+            <img src="mutton_head.jpg" alt="Mutton Head - Fresh Mutton Head">
+            <h2>Mutton Head</h2>
+            <p>$22 per kg</p>
+            <label for="quantity-Mutton-Head" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Mutton-Head">
+            <button>Add to cart</button>
+        </div>
+        <div class="product-card">
+            <img src="pork.jpg" alt="Pork - Fresh Pork">
+            <h2>Pork</h2>
+            <p>$12 per kg</p>
+            <label for="quantity-Pork" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Pork">
+            <button>Add to cart</button>
+        </div>
+        <!-- Fourth Row -->
+        <div class="product-card">
+            <img src="beef.jpg" alt="Beef - Fresh Beef">
+            <h2>Beef</h2>
+            <p>$15 per kg</p>
+            <label for="quantity-Beef" class="quantity-label">Quantity:</label>
+            <input type="number" min="1" class="quantity-input" id="quantity-Beef">
+            <button>Add to cart</button>
+        </div>
+        <!-- Add more product cards as needed -->
     </div>
 
     <div class="cart">
@@ -80,31 +166,17 @@
 
     <div class="checkout">
         <h2>Payment Details</h2>
-        <input type="text" id="address" placeholder="Address">
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter your address">
         <label for="phone">Phone number:</label>
-        <input type="text" id="phone" placeholder="Phone number">
+        <input type="text" id="phone" placeholder="Enter your phone number">
         <button id="place-order-button">Place Order</button>
     </div>
 
     <script>
-        var products = [
-            { name: 'Basa Fish', price: 10, image: 'basa_fish.jpg' },
-            { name: 'Rupchand Fish', price: 15, image: 'rupchand_fish.jpg' },
-            { name: 'Brown Crab', price: 12, image: 'brown_crab.jpg' },
-            { name: 'Prawns', price: 20, image: 'prawns.jpg' },
-            { name: 'Roasters', price: 8, image: 'roasters.jpg' },
-            { name: 'Broilers', price: 7, image: 'broilers.jpg' },
-            { name: 'Mutton Body', price: 18, image: 'mutton_body.jpg' },
-            { name: 'Mutton Head', price: 22, image: 'mutton_head.jpg' },
-            { name: 'Pork', price: 12, image: 'pork.jpg' },
-            { name: 'Beef', price: 15, image: 'beef.jpg' },
-            // Add more products as needed
-        ];
-
         var cart = { weight: 0, price: 0 };
         var discount = 0;
 
-        var productGrid = document.querySelector('.product-grid');
         var cartContent = document.querySelector('#cart-content');
         var checkoutButton = document.querySelector('#checkout-button');
         var checkout = document.querySelector('.checkout');
@@ -112,54 +184,26 @@
         var phoneInput = document.querySelector('#phone');
         var placeOrderButton = document.querySelector('#place-order-button');
 
-        products.forEach(function(product) {
-            var productCard = document.createElement('div');
-            productCard.className = 'product-card';
+        var addToCartButtons = document.querySelectorAll('.product-card button');
+        addToCartButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var productCard = this.parentElement;
+                var productName = productCard.querySelector('h2').textContent;
+                var productPrice = parseFloat(productCard.querySelector('p').textContent.replace(/\$/g, '').split(' ')[0]);
+                var quantityInput = productCard.querySelector('.quantity-input');
+                var quantity = parseInt(quantityInput.value);
 
-            var productImage = document.createElement('img');
-            productImage.src = product.image;
-            productImage.alt = product.name; // Added alt attribute with product name
-
-            var productName = document.createElement('h2');
-            productName.textContent = product.name;
-
-            var productPrice = document.createElement('p');
-            productPrice.textContent = '$' + product.price + ' per kg';
-
-            var quantityInput = document.createElement('input');
-            quantityInput.type = 'number';
-            quantityInput.min = 1;
-            quantityInput.value = 1;
-            quantityInput.className = 'quantity-input';
-
-            var quantityLabel = document.createElement('label');
-            quantityLabel.textContent = 'Quantity:';
-            quantityLabel.className = 'quantity-label';
-
-            var addButton = document.createElement('button');
-            addButton.textContent = 'Add to cart';
-            addButton.addEventListener('click', function() {
-                var quantity = quantityInput.value;
-                cart.weight += parseInt(quantity);
-                cart.price += product.price * quantity;
+                cart.weight += quantity;
+                cart.price += productPrice * quantity;
 
                 if (quantity > 2) {
-                    discount += product.price * 0.2 * (quantity - 2); // Apply 20% discount per unit of product exceeding 2kg
+                    discount += productPrice * 0.2 * (quantity - 2); // Apply 20% discount per unit of product exceeding 2kg
                 }
 
                 var payablePrice = cart.price - discount;
 
                 cartContent.textContent = 'Total weight: ' + cart.weight + 'kg, Total price: $' + cart.price.toFixed(2) + ', Payable price: $' + payablePrice.toFixed(2);
             });
-
-            productCard.appendChild(productImage);
-            productCard.appendChild(productName);
-            productCard.appendChild(productPrice);
-            productCard.appendChild(quantityLabel);
-            productCard.appendChild(quantityInput);
-            productCard.appendChild(addButton);
-
-            productGrid.appendChild(productCard);
         });
 
         checkoutButton.addEventListener('click', function() {
