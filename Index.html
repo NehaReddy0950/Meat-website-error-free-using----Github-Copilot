@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RaniVari Meat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .header {
+            text-align: center;
+            padding: 10px;
+            background-color: #022403;
+            color: #fafafa; /* Adjusted color for contrast */
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-color: #888;
+        }
+        .product-card img {
+            width: 100%;
+        }
+        .cart {
+            margin: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border: 1px solid #888;
+            padding: 10px;
+        }
+        .checkout {
+            display: none;
+            margin: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border: 1px solid #888;
+            padding: 10px;
+        }
+        .checkout input {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>RaniVari Meat</h1>
+        <h2>We sell fresh meat</h2>
+    </div>
+
+    <div class="product-grid">
+        <!-- Product cards will be added here by JavaScript -->
+    </div>
+
+    <div class="cart">
+        <h2>Cart</h2>
+        <p id="cart-content">Total weight: 0kg, Total price: $0, Payable price: $0</p>
+        <button id="checkout-button">Checkout</button>
+    </div>
+
+    <div class="checkout">
+        <h2>Payment Details</h2>
+        <label for="address">Address</label> <!-- Added label -->
+        <input type="text" id="address" placeholder="Address">
+        <label for="phone">Phone number</label> <!-- Added label -->
+        <input type="text" id="phone" placeholder="Phone number">
+        <button id="place-order-button">Place Order</button>
+    </div>
+
+    <script>
+        var products = [
+            { name: 'Basa Fish', price: 10, image: 'basa_fish.jpg', alt: 'Image of Basa Fish' },
+            { name: 'Rupchand Fish', price: 15, image: 'rupchand_fish.jpg', alt: 'Image of Rupchand Fish' },
+            { name: 'Brown Crab', price: 12, image: 'brown_crab.jpg', alt: 'Image of Brown Crab' },
+            { name: 'Prawns', price: 20, image: 'prawns.jpg', alt: 'Image of Prawns' },
+            { name: 'Roasters', price: 8, image: 'roasters.jpg', alt: 'Image of Roasters' },
+            { name: 'Broilers', price: 7, image: 'broilers.jpg', alt: 'Image of Broilers' },
+            { name: 'Mutton Body', price: 18, image: 'mutton_body.jpg', alt: 'Image of Mutton Body' },
+            { name: 'Mutton Head', price: 22, image: 'mutton_head.jpg', alt: 'Image of Mutton Head' },
+            { name: 'Pork', price: 12, image: 'pork.jpg', alt: 'Image of Pork' },
+            { name: 'Beef', price: 15, image: 'beef.jpg', alt: 'Image of Beef' }
+        ];
+
+        var cart = { weight: 0, price: 0 };
+        var discount = 0;
+
+        var productGrid = document.querySelector('.product-grid');
+        var cartContent = document.querySelector('#cart-content');
+        var checkoutButton = document.querySelector('#checkout-button');
+        var checkout = document.querySelector('.checkout');
+        var addressInput = document.querySelector('#address');
+        var phoneInput = document.querySelector('#phone');
+        var placeOrderButton = document.querySelector('#place-order-button');
+
+        products.forEach(function(product) {
+            var productCard = document.createElement('div');
+            productCard.className = 'product-card';
+
+            var productImage = document.createElement('img');
+            productImage.src = product.image;
+            productImage.alt = product.alt; // Added alt attribute
+
+            var productName = document.createElement('h2');
+            productName.textContent = product.name;
+
+            var productPrice = document.createElement('p');
+            productPrice.textContent = '$' + product.price + ' per kg';
+
+            var quantityLabel = document.createElement('label'); // Added label
+            quantityLabel.textContent = 'Quantity';
+            quantityLabel.for = 'quantity-' + product.name.replace(' ', '-');
+
+            var quantityInput = document.createElement('input');
+            quantityInput.type = 'number';
+            quantityInput.min = 1;
+            quantityInput.value = 1;
+            quantityInput.className = 'quantity';
+            quantityInput.id = 'quantity-' + product.name.replace(' ', '-'); // Added id
+
+            var addButton = document.createElement('button');
+            addButton.textContent = 'Add to cart';
+            addButton.addEventListener('click', function() {
+                var quantity = quantityInput.value;
+                cart.weight += parseInt(quantity);
+                cart.price += product.price * quantity;
+
+                if (cart.weight > 2) {
+                    discount = cart.price * 0.2; // Apply 20% discount
+                }
+
+                var payablePrice = cart.price - discount;
+
+                cartContent.textContent = 'Total weight: ' + cart.weight + 'kg, Total price: $' + cart.price.toFixed(2) + ', Payable price: $' + payablePrice.toFixed(2);
+            });
+
+            productCard.appendChild(productImage);
+            productCard.appendChild(productName);
+            productCard.appendChild(productPrice);
+            productCard.appendChild(quantityLabel); // Added label
+            productCard.appendChild(quantityInput);
+            productCard.appendChild(addButton);
+
+            productGrid.appendChild(productCard);
+        });
+
+        checkoutButton.addEventListener('click', function() {
+            checkout.style.display = 'block';
+        });
+
+        placeOrderButton.addEventListener('click', function() {
+            var address = addressInput.value;
+            var phone = phoneInput.value;
+
+            if (!address || !phone) {
+                alert('Please enter your address and phone number.');
+                return;
+            }
+
+            var payablePrice = cart.price - discount;
+
+            alert('Thank you for shopping. Your order is confirmed.\n\nBill:\nTotal price: $' + cart.price.toFixed(2) + '\nDiscount: $' + discount.toFixed(2) + '\nPayable price: $' + payablePrice.toFixed(2));
+        });
+    </script>
+</body>
+</html>
